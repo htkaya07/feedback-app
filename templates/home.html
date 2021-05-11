@@ -1,0 +1,39 @@
+{% extends 'base.html'  %}
+
+
+{% block title %} Sign in/up {% endblock %}
+{% block content %} 
+
+
+<div class="continer">
+    <h1 class="display-2 text-center">All feedbacks</h1>
+<ul>
+{% for feedback in feedbacks %}
+
+
+<div class="card">
+    <h4 class="card-header" style="color: blue;">{{ feedback.title }} </h4>
+    
+    <div class="card-body" style="font: outline;">
+      <h5 class="card-title">{{feedback.username}}</h5>
+      <p class="card-text">{{feedback.content}} </p>
+      <p class="card-text">{{feedback.feedback_id}} </p>
+      <h6><small>{{ feedback.friendly_date }}</small></h6>
+      {% if session['username'] == feedback.username %}
+      <a href="/feedback/{{feedback.id}}/delete" class="btn btn-primary">delete</a>
+      {% else %}
+      <p></p>
+      {% endif %}
+    </div>
+  </div>
+
+{% endfor %}
+</ul>
+
+</div>
+
+
+
+
+
+{% endblock %}

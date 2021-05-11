@@ -1,0 +1,45 @@
+{% extends 'base.html'  %}
+
+
+{% block title %} Sign in/up {% endblock %}
+
+
+{% block content %}
+<div class="row">
+
+    {% if user.username %}
+    <ul>
+        <li>{{user.username}}</li>
+        <li>{{user.first_name}}</li>
+        <li>{{user.last_name}}</li>
+        <li>{{user.email}}</li>
+    </ul>
+    <div class="col-sm-2 col-6">
+      <img src="{{ user.image_url }}"
+           alt="{{ user.full_name }}"
+           class="img-fluid">
+    </div>
+    
+    {% endif %}
+
+    <form>
+        <button class="btn btn-primary btn-sm"
+                formaction="/users/{{ user.username }}/edit"
+                formmethod="GET">Edit
+        </button>
+        <button class="btn btn-danger btn-sm"
+                formaction="/users/{{ user.username }}/delete"
+                formmethod="POST">Delete
+        </button>
+
+        <button class="btn btn-primary btn-sm"
+                formaction="/users/{{ user.username }}/feedback/add"
+                formmethod="POST">Add feedback
+        </button>
+      </form>
+
+      
+  
+</div>
+
+{% endblock %}
